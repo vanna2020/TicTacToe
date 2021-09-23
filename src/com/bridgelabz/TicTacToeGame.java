@@ -52,10 +52,27 @@ public class TicTacToeGame {
         System.out.println(board[7] + "   |   " + board[8] + "   |   " + board[9]);
     }
 
+    /* Ability for user to make a move to a desired location in the board
+     */
+    public static void playerMove(){
+        System.out.print("Select Position in Index to Move in Board (1 to 9) : ");
+        int indexNumber = scanner.nextInt();
+        if (indexNumber < 1 && indexNumber > 9){
+            System.out.println("You Entered Invalid Position ");
+            playerMove();
+        }
+        else {
+            board[indexNumber] = playerChoice;
+            showBoard();
+        }
+    }
+
+
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game");
         createBoard();
         choose();
         showBoard();
+        playerMove();
     }
 }
