@@ -2,9 +2,12 @@ package com.bridgelabz;
 
 import java.util.Scanner;
 
+import java.util.Random;
+
 public class TicTacToeGame {
 
     static Scanner scanner = new Scanner(System.in);
+    static Random ran = new Random();
     static char [] board = new char[10];
     static char playerChoice;
     static char computerChoice;
@@ -12,7 +15,7 @@ public class TicTacToeGame {
     /* Initializing an array of size 10
        In array we have to create an empty space for array[index] from 1 to 9.
      */
-    public static void createBoard(){
+    public static void createBoard() {
         for (int index=1; index<board.length; index++){
             board[index] = ' ';
         }
@@ -43,13 +46,11 @@ public class TicTacToeGame {
     /* In this method we have to show case the Board.
      */
     static void showBoard(){
-        System.out.println(); // Used for an empty line.
-        System.out.println("Tic Tac Toe Board");
-        System.out.println(board[1] + "   |   " + board[2] + "   |   " + board[3]);
-        System.out.println("-----------------");
-        System.out.println(board[4] + "   |   " + board[5] + "   |   " + board[6]);
-        System.out.println("-----------------");
-        System.out.println(board[7] + "   |   " + board[8] + "   |   " + board[9]);
+        System.out.println(board[1] + "  |  " + board[2] + "  |  " + board[3]);
+        System.out.println("---------------");
+        System.out.println(board[4] + "  |  " + board[5] + "  |  " + board[6]);
+        System.out.println("---------------");
+        System.out.println(board[7] + "  |  " + board[8] + "  |  " + board[9]);
     }
 
     /* Ability for user to make a move to a desired location in the board
@@ -60,9 +61,6 @@ public class TicTacToeGame {
         if (indexNumber < 1 && indexNumber > 9){
             System.out.println("You Entered Invalid Position ");
             playerMove();
-
-            /* In this we are checking for empty space.
-             */
         }else if(board[indexNumber] != ' ') {
             System.out.println("The Index is already occupied kindly choose other index ");
             playerMove();
@@ -73,12 +71,26 @@ public class TicTacToeGame {
         }
     }
 
+    /* In this we have taken a random menthod to do a toss between Player and Computer
+       Winning candidate will play first.
+     */
+    static void tossToPlay() {
+        System.out.println("Tossing To Check who Plays First");
+        int toss = ran.nextInt(2);
+        if (toss == 0) {
+            System.out.println("Its Heads Player Plays first");
+        } else {
+            System.out.println("Its Tails Computer Plays first");
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game");
         createBoard();
+        tossToPlay();
         choose();
         showBoard();
         playerMove();
+        scanner.close();
     }
 }
